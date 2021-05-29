@@ -45,6 +45,9 @@
 #include <vector>
 #include <iostream>
 
+#ifdef __MINGW32__
+#include "drand48.src"
+#endif
 namespace CLHEP {
 
 static const int MarkerLen = 64; // Enough room to hold a begin or end marker. 
