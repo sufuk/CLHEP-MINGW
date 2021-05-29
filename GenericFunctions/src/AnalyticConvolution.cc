@@ -5,7 +5,7 @@
 #include "CLHEP/GenericFunctions/Gaussian.hh"
 #include "CLHEP/GenericFunctions/Exponential.hh"
 #include <cmath>	// for isfinite
-#if (defined _WIN32)
+#if (defined _MSC_VER)
 #include <float.h> //  Visual C++ _finite
 #endif
 #include <iostream>
@@ -81,7 +81,7 @@ double AnalyticConvolution::operator() (double argument) const {
   if (_type==SMEARED_NEG_EXP) {
     expG = exp((xsigma*xsigma +2*tau*(/*xoffset*/x))/(2.0*tau*tau)) * 
       erfc((xsigma*xsigma+tau*(/*xoffset*/x))/(sqrtTwo*xsigma*tau))/(2.0*tau);
-#if (defined _WIN32)
+#if (defined _MSC_VER)
     if (!_finite(expG)) {
       expG=0.0;
     }
@@ -99,7 +99,7 @@ double AnalyticConvolution::operator() (double argument) const {
   
   // Both sign distribution=> return smeared exponential:
   if (_type==SMEARED_EXP) {
-#if (defined _WIN32)
+#if (defined _MSC_VER)
     if (!_finite(expG)) {
       expG=0.0;
     }
